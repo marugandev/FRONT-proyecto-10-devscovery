@@ -1,6 +1,6 @@
 import { navigate } from "../../utils/functions/navigate";
 import { routes } from "../../utils/routes/routes";
-import { Button } from "../button/button";
+import { Button } from "../Button/Button";
 import { Nav } from "../Nav/Nav";
 
 import "./Menu.css";
