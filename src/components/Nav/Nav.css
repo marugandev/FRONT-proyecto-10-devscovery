@@ -31,3 +31,10 @@
 #eventManagement:hover {
   color: var(--de-accent-primary);
 }
+
+@media (max-width: 768px) {
+  .header__nav-item a#info,
+  .header__nav-item a#contact {
+    position: inherit;
+  }
+}
