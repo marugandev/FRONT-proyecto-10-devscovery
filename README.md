@@ -9,7 +9,7 @@ Ofrece una experiencia fluida y directa para administrar los eventos, usuarios y
 - **Components**: Componentes reutilizables como campos de formularios, botones, etc.
 - **Pages**: Páginas principales como inicio de sesión, registro, eventos, etc.
 - **Utils**:
-  - **functions**: Funciones auxiliares.
+  - **Functions**: Funciones auxiliares.
   - **Routes**: Manejo de rutas.
   - **API**: Funciones para interactuar con la API del backend.
   - **Animations**: Funciones de animación.
