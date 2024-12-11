@@ -5,7 +5,7 @@ export const doToggleMenu = () => {
     menu.classList.toggle("header__menu-toggle");
 
     const iconToggleMenu = document.querySelector(
-      'img[src="./assets/icons/devscovery_menu_close.svg"], img[src="./assets/icons/devscovery_menu_open.svg"]'
+      'img[src="/assets/icons/devscovery_menu_close.svg"], img[src="/assets/icons/devscovery_menu_open.svg"]'
     );
 
     if (iconToggleMenu) {
