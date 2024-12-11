@@ -1,4 +1,4 @@
-import { Button } from "../../components/button/button";
+import { Button } from "../../components/Button/Button";
 import { CloseLink } from "../../components/CloseLink.js/CloseLink";
 import { RenderEventManagement } from "../../components/RenderEventManagement/RenderEventManagement";
 import { moveInputs } from "../../utils/animations/moveInputs";
