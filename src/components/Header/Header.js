@@ -20,10 +20,10 @@ export const Header = () => {
   const imgToggleButton = document.createElement("img");
 
   header.classList.add("header");
-  img.src = "/public/assets/devscovery_logo.svg";
+  img.src = "/assets/devscovery_logo.svg";
   img.alt = "Logotipo de Devscovery";
   img.classList.add("header__logo");
-  imgToggleButton.src = "/public/assets/icons/devscovery_menu_close.svg";
+  imgToggleButton.src = "/assets/icons/devscovery_menu_close.svg";
 
   h1.addEventListener("click", (e) => {
     e.preventDefault();
