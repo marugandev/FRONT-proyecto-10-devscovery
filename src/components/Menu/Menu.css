@@ -41,3 +41,9 @@ header > .header__menu-toggle {
   color: var(--de-accent-yellow);
   border: 2px solid var(--de-accent-yellow);
 }
+
+@media (max-width: 768px) {
+  .header__menu {
+    display: none;
+  }
+}
