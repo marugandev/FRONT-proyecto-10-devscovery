@@ -137,23 +137,23 @@ input {
   main {
     margin-left: 0;
   }
-  .header {
+  header .header {
     width: 100%;
     height: auto;
     position: relative;
   }
-  .header__logo {
+  header .header__logo {
     width: 200px;
     margin-bottom: var(--de-margin-s);
   }
-  .header__menu {
+  header .header__menu {
     display: none;
   }
-  .header__button--toggle {
+  header .header__button--toggle {
     display: block;
   }
-  .header__nav-item a#info,
-  .header__nav-item a#contact {
+  header .header__nav-item a#info,
+  header .header__nav-item a#contact {
     position: inherit;
   }
 }
