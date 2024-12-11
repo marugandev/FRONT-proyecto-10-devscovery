@@ -1,5 +1,5 @@
 import { AnchorLink } from "../AnchorLink/AnchorLink";
-import { Button } from "../button/button";
+import { Button } from "../Button/Button";
 
 export const AuthForm = ({
   formClass,
