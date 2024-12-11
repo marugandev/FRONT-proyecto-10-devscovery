@@ -137,11 +137,11 @@ input {
   main {
     margin-left: 0;
   }
-  .header {
+  /* .header {
     width: 100%;
     height: auto;
     position: relative;
-  }
+  } */
   /*  .header__logo {
     width: 200px;
     margin-bottom: var(--de-margin-s);

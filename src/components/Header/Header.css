@@ -29,8 +29,16 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
   .header__logo {
     width: 200px;
     margin-bottom: var(--de-margin-s);
+  }
+  .header__button--toggle {
+    display: block;
   }
 }
