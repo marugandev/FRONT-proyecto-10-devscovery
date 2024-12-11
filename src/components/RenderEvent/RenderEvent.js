@@ -1,6 +1,6 @@
 import { LoginRegister } from "../../pages/LoginRegister/LoginRegister";
 import { putEventAttendees } from "../../utils/functions/eventAttendeesService";
-import { Button } from "../button/button";
+import { Button } from "../Button/Button";
 
 import "./RenderEvent.css";
 
