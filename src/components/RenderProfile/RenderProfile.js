@@ -1,4 +1,4 @@
-import { Button } from "../button/button";
+import { Button } from "../Button/Button";
 import { CloseLink } from "../CloseLink.js/CloseLink";
 import { FieldForm } from "../FieldForm/FieldForm";
 
