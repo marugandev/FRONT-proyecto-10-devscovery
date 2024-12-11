@@ -1,4 +1,4 @@
-import { Button } from "../button/button";
+import { Button } from "../Button/Button";
 import { AnchorLink } from "../AnchorLink/AnchorLink";
 import "./Header.css";
 import { Menu } from "../Menu/Menu";
