@@ -1,0 +1,26 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--de-gap-l);
+  padding: var(--de-padding-l);
+  text-wrap: balance;
+}
+
+.contact__section {
+  font-family: var(--de-font-family-body);
+  font-size: var(--de-font-size-m);
+  color: var(--de-color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--de-margin-m);
+}
+
+.contact__borders {
+  display: block;
+  margin-top: var(--de-margin-m);
+  border-bottom: 2px solid var(--de-color-text-secondary);
+}
+
+.contact__label {
+  font-weight: normal;
+  color: var(--de-accent-primary);
+}

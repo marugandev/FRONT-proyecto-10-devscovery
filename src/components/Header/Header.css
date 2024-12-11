@@ -1,0 +1,29 @@
+.header {
+  width: 250px;
+  height: 100svh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--de-gap-l);
+}
+
+.header__logo {
+  width: 250px;
+  margin-top: var(--de-margin-m);
+  margin-bottom: var(--de-margin-xl);
+}
+
+.header__button--toggle {
+  display: none;
+  position: absolute;
+  top: 22px;
+  right: 4px;
+  width: 24px;
+  background-color: transparent;
+  border: none;
+  transition: transform 0.2s ease-in-out;
+}
+.header__button--toggle:hover,
+.header__button--toggle:active {
+  transform: scale(1.2);
+}

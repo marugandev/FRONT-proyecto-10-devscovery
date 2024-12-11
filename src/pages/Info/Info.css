@@ -1,0 +1,44 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--de-gap-l);
+  padding: var(--de-padding-l);
+  text-wrap: balance;
+}
+
+.info__section {
+  font-family: var(--de-font-family-body);
+  font-size: var(--de-font-size-m);
+  color: var(--de-color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--de-margin-m);
+}
+
+.info__borders {
+  display: block;
+  margin-top: var(--de-margin-m);
+  border-bottom: 2px solid var(--de-color-text-secondary);
+}
+
+.info__label-how,
+.info__label-benefits {
+  font-weight: normal;
+  color: var(--de-accent-primary);
+}
+.info__label-reminders {
+  font-weight: normal;
+  color: var(--de-color-text-primary);
+}
+
+.info__cta-link--register {
+  color: var(--de-color-text-primary);
+}
+
+.info__footer {
+  display: flex;
+  gap: var(--de-gap-m);
+}
+
+.info__footer-img {
+  width: 35px;
+}

@@ -1,0 +1,11 @@
+a {
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--de-font-family-body);
+  color: var(--de-color-text-primary);
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--de-accent-primary);
+}

@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Quicksand:wght@300..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-user-drag: none;
+}
+
+:root {
+  /*? Fonts */
+  /* Fonts family */
+  --de-font-family-titles: "Quicksand", sans-serif;
+  --de-font-family-body: "Nunito Sans", sans-serif;
+
+  /* Fonts sizes (base px) */
+  --de-font-size-base: 16px;
+  --de-font-size-s: 0.875rem; /* 14px */
+  --de-font-size-m: 1rem; /* 16px */
+  --de-font-size-l: 1.25rem; /* 20px */
+  --de-font-size-xl: 1.5rem; /* 24px */
+  --de-font-size-xxl: 2rem; /* 32px */
+  --de-font-size-xxxl: 3rem; /* 48px */
+
+  /* Fonts weights */
+  --de-font-weight-500: 500;
+  --de-font-weight-600: 600;
+  --de-font-weight-700: 700;
+  --de-font-weight-800: 800;
+  --de-font-weight-900: 900;
+
+  /*? Colors */
+  /* Text Colors */
+  --de-color-text-primary: #ccd6f6; /* Principal */
+  --de-color-text-secondary: #8892b0; /* Secundario */
+
+  /* Background Colors */
+  --de-bg-primary: #0a192e;
+  --de-bg-secondary: #112240;
+
+  /* Accent Colors */
+  --de-accent-primary: #63ffda;
+  --de-accent-yellow: #ffc857;
+  --de-accent-red: #ff5a5f;
+
+  /*? Spacings */
+  /* Margin */
+  --de-margin-s: 8px;
+  --de-margin-m: 16px;
+  --de-margin-l: 24px;
+  --de-margin-xl: 32px;
+
+  /* Padding */
+  --de-padding-s: 8px;
+  --de-padding-m: 16px;
+  --de-padding-l: 24px;
+  --de-padding-xl: 32px;
+
+  --de-padding-button: 10px 20px;
+
+  /* Gaps */
+  --de-gap-s: 8px;
+  --de-gap-m: 16px;
+  --de-gap-l: 24px;
+  --de-gap-xl: 32px;
+
+  /*? Borders */
+  /* Border Radius */
+  --de-border-radius-s: 4px;
+  --de-border-radius-m: 8px;
+  --de-border-radius-l: 16px;
+  --de-border-radius-xl: 32px;
+}
+
+body {
+  max-width: 1200px;
+  /* 80svw */
+  height: 100svh;
+  margin: 0 auto;
+  padding: var(--de-padding-l);
+  background-color: var(--de-bg-primary);
+  display: flex;
+  gap: var(--de-padding-xl);
+  border-radius: var(--de-border-radius-m);
+}
+
+main {
+  width: 100%;
+  margin-left: 274px; /* -250px header -24px spacings */
+}
+
+h2,
+h3 {
+  font-family: var(--de-font-family-titles);
+  font-size: var(--de-font-size-xl);
+  color: var(--de-color-text-primary);
+}
+
+ul {
+  list-style-type: none;
+}
+
+p,
+label,
+input {
+  font-family: var(--de-font-family-body);
+  font-size: var(--de-font-size-m);
+  color: var(--de-color-text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  /* Mobile :root */
+  :root {
+    --de-font-size-s: 0.75rem; /* 12px */
+    --de-font-size-m: 0.875rem; /* 14px */
+    --de-font-size-l: 1rem; /* 16px */
+    --de-font-size-xl: 1.25rem; /* 20px */
+    --de-font-size-xxl: 1.5rem; /* 24px */
+    --de-font-size-xxxl: 2rem; /* 32px */
+
+    --de-margin-s: 8px;
+    --de-margin-m: 16px;
+    --de-margin-l: 24px;
+    --de-margin-xl: 32px;
+
+    --de-padding-s: 8px;
+    --de-padding-m: 16px;
+    --de-padding-l: 24px;
+    --de-padding-xl: 32px;
+  }
+  body {
+    flex-direction: column;
+  }
+  main {
+    margin-left: 0;
+  }
+  .header {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .header__logo {
+    width: 200px;
+    margin-bottom: var(--de-margin-s);
+  }
+  .header__menu {
+    display: none;
+  }
+  .header__button--toggle {
+    display: block;
+  }
+  .header__nav-item a#info,
+  .header__nav-item a#contact {
+    position: inherit;
+  }
+}

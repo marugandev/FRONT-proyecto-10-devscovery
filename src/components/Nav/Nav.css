@@ -1,0 +1,33 @@
+.header__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--de-gap-m);
+}
+
+.header__nav-item--disabled {
+  display: none;
+}
+
+.header__nav-item > a {
+  font-size: var(--de-font-size-l);
+}
+
+.header__nav-item a#info {
+  position: absolute;
+  bottom: 94px;
+}
+
+.header__nav-item a#contact {
+  position: absolute;
+  bottom: 50px;
+}
+
+#userManagement,
+#eventManagement {
+  color: var(--de-accent-yellow);
+}
+
+#userManagement:hover,
+#eventManagement:hover {
+  color: var(--de-accent-primary);
+}
