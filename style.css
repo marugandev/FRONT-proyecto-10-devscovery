@@ -142,10 +142,10 @@ input {
     height: auto;
     position: relative;
   }
-  .header__logo {
+  /*  .header__logo {
     width: 200px;
     margin-bottom: var(--de-margin-s);
-  }
+  } */
   .header__menu {
     display: none;
   }

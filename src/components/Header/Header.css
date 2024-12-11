@@ -27,3 +27,10 @@
 .header__button--toggle:active {
   transform: scale(1.2);
 }
+
+@media (max-width: 768px) {
+  .header__logo {
+    width: 200px;
+    margin-bottom: var(--de-margin-s);
+  }
+}
