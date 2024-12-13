@@ -221,3 +221,9 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--de-color-text-secondary);
   border: 2px solid var(--de-color-text-secondary);
 }
+
+@media (max-width: 768px) {
+  .event-management__select {
+    width: 200px;
+  }
+}
