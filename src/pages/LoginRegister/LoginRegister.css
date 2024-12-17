@@ -102,6 +102,12 @@
   gap: var(--de-gap-s);
 }
 
+@media (max-width: 768px) {
+  .main__auth-section {
+    padding: 0px;
+  }
+}
+
 @media (max-width: 510px) {
   .auth-section__form {
     width: 300px;
