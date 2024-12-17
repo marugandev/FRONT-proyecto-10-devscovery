@@ -80,3 +80,14 @@
   color: var(--de-color-text-primary);
   border: 2px solid var(--de-color-text-primary);
 }
+
+@media (max-width: 768px) {
+  .events__img-container {
+    max-height: 100%;
+  }
+  .events__details-container {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--de-gap-l);
+  }
+}
