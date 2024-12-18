@@ -168,7 +168,7 @@ export const RenderEventManagement = ({
       fieldset: date
     },
     {
-      legendText: "Duración:",
+      legendText: "Duración (Minutos):",
       fieldset: duration
     },
     {
