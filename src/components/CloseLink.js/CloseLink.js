@@ -12,7 +12,6 @@ export const CloseLink = ({ classNameAnchor, classNameDiv, section }) => {
   divClose.append(aClose);
 
   aClose.addEventListener("click", (e) => {
-    e.preventDefault();
     section.remove();
 
     window.history.pushState("", "", "/events");
@@ -21,7 +20,6 @@ export const CloseLink = ({ classNameAnchor, classNameDiv, section }) => {
   });
 
   const handleKeydownEsc = (e) => {
-    e.preventDefault();
     if (e.key === "Escape") {
       section.remove();
 
