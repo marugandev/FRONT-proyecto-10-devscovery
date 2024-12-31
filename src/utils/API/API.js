@@ -7,7 +7,7 @@
     : "http://localhost:3000"; */
 
 const BASE_URL = import.meta.env.VITE_API_URL;
-console.log("Base URL:", BASE_URL);
+/* console.log("Base URL:", BASE_URL); */
 
 export const API = async ({
   endpoint,
@@ -29,6 +29,12 @@ export const API = async ({
     body: isJSON ? JSON.stringify(body) : body,
     method
   });
+
+  if (!res.ok) {
+    const errorRes = await res.json();
+    console.error("Error de la API:", errorRes);
+    throw new Error(errorRes.message || "Error desconocido");
+  }
 
   const response = await res.json();
   return response;

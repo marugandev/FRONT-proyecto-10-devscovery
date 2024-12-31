@@ -1,5 +1,15 @@
 import { API } from "../API/API";
 
+export const verifyToken = async (token) => {
+  return await API({
+    endpoint: "/users/verify",
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    isJSON: true
+  });
+};
+
 export const loginService = async (data) => {
   return await API({
     endpoint: "/users/login",
@@ -20,7 +30,7 @@ export const registerService = async (data) => {
 
 export const getUsers = async (token) => {
   return await API({
-    endpoint: `/users`,
+    endpoint: "/users",
     headers: {
       Authorization: `Bearer ${token}`
     },
