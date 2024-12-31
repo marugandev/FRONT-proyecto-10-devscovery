@@ -133,6 +133,7 @@
 
 .profile__buttons-group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--de-gap-m);
 }
