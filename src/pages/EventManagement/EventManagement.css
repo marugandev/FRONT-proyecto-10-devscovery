@@ -65,6 +65,7 @@
 
 .event-management__img-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--de-gap-xl);
   margin-bottom: var(--de-margin-s);
