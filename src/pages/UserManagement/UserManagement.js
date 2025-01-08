@@ -1,3 +1,7 @@
+import {
+  Alert,
+  RemoveAlert
+} from "../../components/AlertManagement/AlertManagement";
 import { RenderProfile } from "../../components/RenderProfile/RenderProfile";
 import { moveInputs } from "../../utils/animations/moveInputs";
 import { CreatePage } from "../../utils/functions/createPage";
@@ -49,8 +53,12 @@ export const UserManagement = async () => {
       select.append(option);
     });
   } catch (error) {
+    Alert({
+      textContent:
+        "Fallo al cargar los usuarios. Por favor, inténtalo más tarde.",
+      onAccept: RemoveAlert
+    });
     console.error("Fallo al obtener usuarios:", error);
-    alert("Fallo al cargar los usuarios. Por favor, inténtalo más tarde.");
   }
 
   select.addEventListener("change", async () => {
@@ -71,45 +79,58 @@ export const UserManagement = async () => {
       const handleModify = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append("userName", e.target.elements.inputUserName.value);
-        formData.append("email", e.target.elements.inputEmail.value);
-        formData.append("password", e.target.elements.inputPassword.value);
+        const onAccept = async () => {
+          const formData = new FormData();
+          formData.append("userName", e.target.elements.inputUserName.value);
+          formData.append("email", e.target.elements.inputEmail.value);
+          formData.append("password", e.target.elements.inputPassword.value);
 
-        if (e.target.elements.inputAvatar.files[0]) {
-          formData.append("avatar", e.target.elements.inputAvatar.files[0]);
-        }
-
-        try {
-          const response = await putUser(userId, formData, token);
-          console.log("Usuario actualizado", response);
-          alert("Usuario actualizado correctamente");
-
-          if (userLocalStorage && userLocalStorage._id === userId) {
-            localStorage.setItem("user", JSON.stringify(response.user));
+          if (e.target.elements.inputAvatar.files[0]) {
+            formData.append("avatar", e.target.elements.inputAvatar.files[0]);
           }
-          window.location.href = "/events";
-        } catch (error) {
-          console.error("Error al actualizar el usuario:", error);
-        }
+          try {
+            const response = await putUser(userId, formData, token);
+            console.log("Usuario actualizado", response);
+
+            if (userLocalStorage && userLocalStorage._id === userId) {
+              localStorage.setItem("user", JSON.stringify(response.user));
+            }
+            window.location.href = "/events";
+          } catch (error) {
+            console.error("Error al actualizar el usuario:", error);
+          } finally {
+            RemoveAlert();
+          }
+        };
+        Alert({
+          textContent: "¿Seguro que deseas guardar los cambios en la cuenta?",
+          cancelButton: true,
+          onAccept,
+          onCancel: RemoveAlert
+        });
       };
 
-      const handleDelete = async () => {
-        const isConfirmed = window.confirm(
-          "¿Seguro de que deseas eliminar la cuenta? La acción no se puede deshacer."
-        );
-        if (isConfirmed) {
+      const handleDelete = () => {
+        const onAccept = async () => {
           try {
             await deleteUser(userId, token);
-            alert("Usuario eliminado");
 
             if (userLocalStorage && userLocalStorage._id === userId)
               removeLocalStorage();
             window.location.href = "/events";
           } catch (error) {
             console.error("Error al eliminar el usuario:", error);
+          } finally {
+            RemoveAlert();
           }
-        }
+        };
+        Alert({
+          textContent:
+            "¿Seguro de que deseas eliminar la cuenta? La acción no se puede deshacer.",
+          cancelButton: true,
+          onAccept,
+          onCancel: RemoveAlert
+        });
       };
 
       RenderProfile({
@@ -124,10 +145,12 @@ export const UserManagement = async () => {
 
       moveInputs();
     } catch (error) {
+      Alert({
+        textContent:
+          "Error al cargar el perfil, por favor inténtalo de nuevo mas tarde",
+        onAccept: RemoveAlert
+      });
       console.error("Error al cargar el perfil:", error);
-      alert(
-        "Error al cargar el perfil, por favor inténtalo de nuevo mas tarde"
-      );
     }
   });
 
