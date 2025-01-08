@@ -7,6 +7,10 @@ import {
   deleteUser
 } from "../../utils/functions/userService";
 import { removeLocalStorage } from "../../utils/functions/removeLocalStorage";
+import {
+  Alert,
+  RemoveAlert
+} from "../../components/AlertManagement/AlertManagement";
 
 import "./Profile.css";
 
@@ -22,50 +26,75 @@ export const Profile = async () => {
       throw new Error(res.error);
     }
 
-    const handleModify = async (e) => {
+    const handleModify = (e) => {
       e.preventDefault();
 
-      const formData = new FormData();
-      formData.append("userName", e.target.elements.inputUserName.value);
-      formData.append("email", e.target.elements.inputEmail.value);
-      formData.append("password", e.target.elements.inputPassword.value);
+      const onAccept = async () => {
+        const formData = new FormData();
+        formData.append("userName", e.target.elements.inputUserName.value);
+        formData.append("email", e.target.elements.inputEmail.value);
+        formData.append("password", e.target.elements.inputPassword.value);
 
-      if (e.target.elements.inputAvatar.files[0]) {
-        formData.append("avatar", e.target.elements.inputAvatar.files[0]);
-      }
+        if (e.target.elements.inputAvatar.files[0]) {
+          formData.append("avatar", e.target.elements.inputAvatar.files[0]);
+        }
 
-      try {
-        const response = await putUser(user._id, formData, token);
-        console.log("Usuario actualizado", response);
-        alert("Usuario actualizado correctamente");
-        if (response.user)
-          localStorage.setItem("user", JSON.stringify(response.user));
-        window.location.href = "/events";
-      } catch (error) {
-        console.error("Error al actualizar el usuario:", error);
-      }
+        try {
+          const response = await putUser(user._id, formData, token);
+          console.log("Usuario actualizado", response);
+          if (response.user) {
+            localStorage.setItem("user", JSON.stringify(response.user));
+          }
+          window.location.href = "/events";
+        } catch (error) {
+          console.error("Error al actualizar el usuario:", error);
+        } finally {
+          RemoveAlert();
+        }
+      };
+
+      Alert({
+        textContent: "¿Seguro que deseas guardar los cambios en tu perfil?",
+        cancelButton: true,
+        onAccept,
+        onCancel: RemoveAlert
+      });
     };
 
-    const handleDelete = async () => {
-      const isConfirmed = window.confirm(
-        "¿Seguro de que deseas eliminar tu cuenta? La acción no se puede deshacer."
-      );
-      if (isConfirmed) {
+    const handleDelete = () => {
+      const onAccept = async () => {
         try {
           await deleteUser(user._id, token);
-          alert("Usuario eliminado");
           removeLocalStorage();
           window.location.href = "/events";
         } catch (error) {
           console.error("Error al eliminar el usuario:", error);
+        } finally {
+          RemoveAlert();
         }
-      }
+      };
+
+      Alert({
+        textContent:
+          "¿Seguro de que deseas eliminar tu cuenta? La acción no se puede deshacer.",
+        cancelButton: true,
+        onAccept,
+        onCancel: RemoveAlert
+      });
     };
 
     const handleLogout = () => {
-      alert("Sesión cerrada");
-      removeLocalStorage();
-      window.location.href = "/events";
+      const onAccept = () => {
+        removeLocalStorage();
+        window.location.href = "/events";
+      };
+
+      Alert({
+        textContent: "¿Seguro que deseas cerrar sesión?",
+        cancelButton: true,
+        onAccept,
+        onCancel: RemoveAlert
+      });
     };
 
     RenderProfile({
@@ -78,8 +107,13 @@ export const Profile = async () => {
       logout: true
     });
   } catch (error) {
+    Alert({
+      textContent:
+        "Error al cargar el perfil, por favor inténtalo de nuevo más tarde.",
+      onAccept: RemoveAlert
+    });
+
     console.error("Error al cargar el perfil:", error);
-    alert("Error al cargar el perfil, por favor inténtalo de nuevo mas tarde");
   }
 
   moveInputs();

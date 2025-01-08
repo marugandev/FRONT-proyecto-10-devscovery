@@ -6,7 +6,8 @@ export const Button = ({
   id,
   className,
   disabled = false,
-  ariaLabel
+  ariaLabel,
+  onClick
 }) => {
   const btn = document.createElement("button");
   btn.type = type;
@@ -22,6 +23,8 @@ export const Button = ({
   btn.disabled = disabled;
 
   if (ariaLabel) btn.setAttribute("aria-label", ariaLabel);
+
+  if (onClick) btn.addEventListener("click", onClick);
 
   return btn;
 };

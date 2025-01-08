@@ -38,6 +38,7 @@
 
   /* Background Colors */
   --de-bg-primary: #0a192e;
+  --de-bg-primary-rgba: rgba(10, 25, 46, 0.6);
   --de-bg-secondary: #112240;
 
   /* Accent Colors */
