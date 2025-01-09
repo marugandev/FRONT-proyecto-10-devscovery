@@ -24,6 +24,10 @@
   line-height: 1.5;
 }
 
+.alert p {
+  color: var(--de-color-text-primary);
+}
+
 .alert__buttons-container {
   display: flex;
   flex-wrap: wrap;

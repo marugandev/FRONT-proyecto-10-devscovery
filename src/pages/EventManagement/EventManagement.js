@@ -1,3 +1,7 @@
+import {
+  Alert,
+  RemoveAlert
+} from "../../components/AlertManagement/AlertManagement";
 import { Button } from "../../components/Button/Button";
 import { CloseLink } from "../../components/CloseLink.js/CloseLink";
 import { RenderEventManagement } from "../../components/RenderEventManagement/RenderEventManagement";
@@ -66,8 +70,12 @@ export const EventManagement = async () => {
       select.append(option);
     });
   } catch (error) {
+    Alert({
+      textContent:
+        "Fallo al cargar los eventos. Por favor, inténtalo más tarde",
+      onAccept: RemoveAlert
+    });
     console.error("Fallo al obtener los eventos:", error);
-    alert("Fallo al cargar los eventos. Por favor, inténtalo más tarde.");
   }
 
   createButton.addEventListener("click", (e) => {
@@ -83,23 +91,36 @@ export const EventManagement = async () => {
         e,
         "https://res.cloudinary.com/cloudcloudinary0/image/upload/v1733241914/proyecto-10-devscovery/assets/ukf0bbdstpcgrlf6euzh.webp"
       );
+      const onAccept = async () => {
+        try {
+          const res = await postEvent(formData, token);
+          RemoveAlert();
+          Alert({
+            textContent: "Evento creado",
+            onAccept: () => {
+              RemoveAlert;
+              window.location.href = "/events";
+            }
+          });
 
-      try {
-        const res = await postEvent(formData, token);
-
-        if (res.status === "error") {
-          alert(res.message);
-        } else {
           console.log("Evento creado", res);
-          alert("Evento creado con éxito");
+        } catch (error) {
+          RemoveAlert();
+          Alert({
+            textContent: error,
+            onAccept: RemoveAlert
+          });
 
-          window.location.href = "/events";
+          console.error("Error al crear el evento:", error);
         }
-      } catch (error) {
-        console.error("Error al crear el evento:", error);
-      }
+      };
+      Alert({
+        textContent: "¿Seguro que deseas crear el evento?",
+        cancelButton: true,
+        onAccept,
+        onCancel: RemoveAlert
+      });
     };
-
     RenderEventManagement({
       h2TextContent: "Crear evento",
       parentElement: section,
@@ -132,33 +153,69 @@ export const EventManagement = async () => {
       const handleModify = async (e) => {
         e.preventDefault();
 
-        const formData = createEventFormData(e, res.data.img);
+        const onAccept = async () => {
+          const formData = createEventFormData(e, res.data.img);
+          try {
+            const response = await putEvent(eventId, formData, token);
+            RemoveAlert();
+            Alert({
+              textContent: "Evento actualizado",
+              onAccept: () => {
+                RemoveAlert;
+                window.location.href = "/events";
+              }
+            });
 
-        try {
-          const response = await putEvent(eventId, formData, token);
-          console.log("Evento actualizado", response);
-          alert("Evento actualizado correctamente");
+            console.log("Evento actualizado", response);
+          } catch (error) {
+            RemoveAlert();
+            Alert({
+              textContent: error,
+              onAccept: RemoveAlert
+            });
 
-          window.location.href = "/events";
-        } catch (error) {
-          console.error("Error al actualizar el evento:", error);
-        }
+            console.error("Error al actualizar el evento:", error);
+          }
+        };
+        Alert({
+          textContent: "¿Seguro que deseas guardar los cambios en el evento?",
+          cancelButton: true,
+          onAccept,
+          onCancel: RemoveAlert
+        });
       };
 
-      const handleDelete = async () => {
-        const isConfirmed = window.confirm(
-          "¿Seguro de que deseas eliminar el evento? La acción no se puede deshacer."
-        );
-        if (isConfirmed) {
+      const handleDelete = () => {
+        const onAccept = async () => {
           try {
-            await deleteEvent(eventId, token);
-            alert("Evento eliminado");
+            const response = await deleteEvent(eventId, token);
+            RemoveAlert();
+            Alert({
+              textContent: "Evento eliminado",
+              onAccept: () => {
+                RemoveAlert;
+                window.location.href = "/events";
+              }
+            });
 
-            window.location.href = "/events";
+            console.log("Evento eliminado", response);
           } catch (error) {
+            RemoveAlert();
+            Alert({
+              textContent: error,
+              onAccept: RemoveAlert
+            });
+
             console.error("Error al eliminar el evento:", error);
           }
-        }
+        };
+        Alert({
+          textContent:
+            "¿Seguro de que deseas eliminar el evento? La acción no se puede deshacer.",
+          cancelButton: true,
+          onAccept,
+          onCancel: RemoveAlert
+        });
       };
 
       RenderEventManagement({
@@ -172,10 +229,13 @@ export const EventManagement = async () => {
 
       moveInputs();
     } catch (error) {
+      Alert({
+        textContent:
+          "Error al cargar el evento, por favor inténtalo de nuevo mas tarde",
+        onAccept: RemoveAlert
+      });
+
       console.error("Error al cargar el evento:", error);
-      alert(
-        "Error al cargar el evento, por favor inténtalo de nuevo mas tarde"
-      );
     }
   });
 
