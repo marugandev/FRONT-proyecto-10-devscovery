@@ -4,6 +4,7 @@ import {
 } from "../../components/AlertManagement/AlertManagement";
 import { Button } from "../../components/Button/Button";
 import { CloseLink } from "../../components/CloseLink.js/CloseLink";
+import { Loader } from "../../components/Loader/Loader";
 import { RenderEventManagement } from "../../components/RenderEventManagement/RenderEventManagement";
 import { moveInputs } from "../../utils/animations/moveInputs";
 import { createEventFormData } from "../../utils/functions/createEventFormData";
@@ -93,7 +94,10 @@ export const EventManagement = async () => {
       );
       const onAccept = async () => {
         try {
+          Loader(".alert__buttons-container");
+
           const res = await postEvent(formData, token);
+
           RemoveAlert();
           Alert({
             textContent: "Evento creado",
@@ -156,7 +160,10 @@ export const EventManagement = async () => {
         const onAccept = async () => {
           const formData = createEventFormData(e, res.data.img);
           try {
+            Loader(".alert__buttons-container");
+
             const response = await putEvent(eventId, formData, token);
+
             RemoveAlert();
             Alert({
               textContent: "Evento actualizado",
@@ -188,7 +195,10 @@ export const EventManagement = async () => {
       const handleDelete = () => {
         const onAccept = async () => {
           try {
+            Loader(".alert__buttons-container");
+
             const response = await deleteEvent(eventId, token);
+
             RemoveAlert();
             Alert({
               textContent: "Evento eliminado",
