@@ -2,6 +2,7 @@ import {
   Alert,
   RemoveAlert
 } from "../../components/AlertManagement/AlertManagement";
+import { Loader } from "../../components/Loader/Loader";
 import { RenderProfile } from "../../components/RenderProfile/RenderProfile";
 import { moveInputs } from "../../utils/animations/moveInputs";
 import { CreatePage } from "../../utils/functions/createPage";
@@ -90,6 +91,8 @@ export const UserManagement = async () => {
             formData.append("avatar", e.target.elements.inputAvatar.files[0]);
           }
           try {
+            Loader(".alert__buttons-container");
+
             const response = await putUser(userId, formData, token);
 
             if (userLocalStorage && userLocalStorage._id === userId) {
@@ -127,6 +130,8 @@ export const UserManagement = async () => {
       const handleDelete = () => {
         const onAccept = async () => {
           try {
+            Loader(".alert__buttons-container");
+
             const response = await deleteUser(userId, token);
 
             if (userLocalStorage && userLocalStorage._id === userId)
