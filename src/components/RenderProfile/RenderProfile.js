@@ -68,6 +68,7 @@ export const RenderProfile = ({
     inputRequired: false,
     inputMinLength: 3,
     inputMaxLength: 20,
+    inputAutocomplete: "username",
     labelTextContent: res.data.userName,
     labelClass: `${blockClassBEM}__label profile__label--userName`
   });
@@ -79,6 +80,7 @@ export const RenderProfile = ({
     inputName: "inputEmail",
     inputRequired: false,
     inputMaxLength: 50,
+    inputAutocomplete: "email",
     labelTextContent: res.data.email,
     labelClass: `${blockClassBEM}__label profile__label--email`
   });
@@ -91,6 +93,7 @@ export const RenderProfile = ({
     inputRequired: false,
     inputMinLength: 8,
     inputMaxLength: 100,
+    inputAutocomplete: "new-password",
     labelTextContent: "●●●●●●●●",
     labelClass: `${blockClassBEM}__label ${blockClassBEM}__label--password`
   });
