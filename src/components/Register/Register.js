@@ -11,6 +11,7 @@ export const Register = () => {
       inputName: "inputUserName",
       inputMinLength: 3,
       inputMaxLength: 20,
+      inputAutocomplete: "username",
       labelTextContent: "Nombre de usuario",
       labelClass: "auth-section__label auth-section__label--userName"
     }),
@@ -20,6 +21,7 @@ export const Register = () => {
       inputClass: "auth-section__input auth-section__input--email",
       inputName: "inputEmail",
       inputMaxLength: 50,
+      inputAutocomplete: "email",
       labelTextContent: "Correo electrónico",
       labelClass: "auth-section__label auth-section__label--email"
     }),
@@ -30,6 +32,7 @@ export const Register = () => {
       inputName: "inputPassword",
       inputMinLength: 8,
       inputMaxLength: 100,
+      inputAutocomplete: "new-password",
       labelTextContent: "Contraseña",
       labelClass: "auth-section__label auth-section__label--password"
     }),
@@ -40,6 +43,7 @@ export const Register = () => {
       inputName: "inputRepeatPassword",
       inputMinLength: 8,
       inputMaxLength: 100,
+      inputAutocomplete: "new-password",
       labelTextContent: "Repite la contraseña",
       labelClass: "auth-section__label auth-section__label--password"
     })
