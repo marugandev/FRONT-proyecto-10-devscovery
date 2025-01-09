@@ -76,24 +76,28 @@ export const RenderEvent = ({ parentElement, res }) => {
     button.addEventListener("click", async (e) => {
       e.preventDefault();
 
-      if (!user) {
+      const token = localStorage.getItem("token");
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (!user || !user._id) {
         Alert({
           textContent:
             "Inicia sesión o regístrate para poder reservar los eventos.",
           onAccept: () => {
-            RemoveAlert, LoginRegister();
+            RemoveAlert();
+            LoginRegister();
           }
         });
 
         console.error(
           "Inicia sesión o regístrate para poder reservar los eventos."
         );
+        return;
       }
 
-      button.classList.toggle("events__button--clicked");
-
-      const token = localStorage.getItem("token");
       const userId = user._id;
+
+      button.classList.toggle("events__button--clicked");
 
       try {
         button.disabled = true;
@@ -136,7 +140,7 @@ export const RenderEvent = ({ parentElement, res }) => {
       } catch (error) {
         Alert({
           textContent:
-            "Hubo un problema al registrar tu asistencia. Por favor, intentalo de nuevo mas tarde.",
+            "Error al registrar tu asistencia. Por favor, intentalo de nuevo más tarde.",
           onAccept: RemoveAlert
         });
 
