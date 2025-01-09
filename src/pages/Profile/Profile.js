@@ -41,15 +41,29 @@ export const Profile = async () => {
 
         try {
           const response = await putUser(user._id, formData, token);
-          console.log("Usuario actualizado", response);
+
           if (response.user) {
             localStorage.setItem("user", JSON.stringify(response.user));
           }
-          window.location.href = "/events";
-        } catch (error) {
-          console.error("Error al actualizar el usuario:", error);
-        } finally {
+
           RemoveAlert();
+          Alert({
+            textContent: "Perfil actualizado.",
+            onAccept: () => {
+              RemoveAlert;
+              window.location.href = "/events";
+            }
+          });
+
+          console.log("Perfil actualizado", response);
+        } catch (error) {
+          RemoveAlert();
+          Alert({
+            textContent: error,
+            onAccept: RemoveAlert
+          });
+
+          console.error("Error al actualizar el perfil:", error);
         }
       };
 
@@ -64,13 +78,28 @@ export const Profile = async () => {
     const handleDelete = () => {
       const onAccept = async () => {
         try {
-          await deleteUser(user._id, token);
+          const response = await deleteUser(user._id, token);
+
           removeLocalStorage();
-          window.location.href = "/events";
-        } catch (error) {
-          console.error("Error al eliminar el usuario:", error);
-        } finally {
+
           RemoveAlert();
+          Alert({
+            textContent: "Perfil eliminado.",
+            onAccept: () => {
+              RemoveAlert;
+              window.location.href = "/events";
+            }
+          });
+
+          console.log("Perfil eliminado:", response);
+        } catch (error) {
+          RemoveAlert();
+          Alert({
+            textContent: error,
+            onAccept: RemoveAlert
+          });
+
+          console.error("Error al eliminar el perfil:", error);
         }
       };
 
@@ -86,7 +115,17 @@ export const Profile = async () => {
     const handleLogout = () => {
       const onAccept = () => {
         removeLocalStorage();
-        window.location.href = "/events";
+
+        RemoveAlert();
+        Alert({
+          textContent: "Sesión cerrada",
+          onAccept: () => {
+            RemoveAlert();
+            window.location.href = "/events";
+          }
+        });
+
+        console.log("Sesión cerrada");
       };
 
       Alert({
