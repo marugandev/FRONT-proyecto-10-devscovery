@@ -1,3 +1,7 @@
+import {
+  Alert,
+  RemoveAlert
+} from "../../components/AlertManagement/AlertManagement";
 import { RenderEvent } from "../../components/RenderEvent/RenderEvent";
 import { CreatePage } from "../../utils/functions/createPage";
 import { getEvents } from "../../utils/functions/eventService";
@@ -17,10 +21,14 @@ export const Events = async () => {
       res: res.data
     });
   } catch (error) {
+    RemoveAlert();
+    Alert({
+      textContent:
+        "Error al mostrar los eventos. Por favor, intentalo de nuevo más tarde.",
+      onAccept: RemoveAlert
+    });
+
     console.error("Error al mostrar los eventos", error);
-    alert(
-      "Error al mostrar los eventos. Por favor, intentalo de nuevo más tarde."
-    );
   }
 
   return section;
