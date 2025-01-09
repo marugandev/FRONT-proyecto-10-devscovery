@@ -50,7 +50,7 @@ export const Info = () => {
       <span class="info__borders"></span>
     </section>
   `;
-  /*  */
+
   const footer = document.createElement("footer");
   footer.classList.add("info__footer");
 
