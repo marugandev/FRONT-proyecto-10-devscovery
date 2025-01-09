@@ -11,6 +11,7 @@ import {
   Alert,
   RemoveAlert
 } from "../../components/AlertManagement/AlertManagement";
+import { Loader } from "../../components/Loader/Loader";
 
 import "./Profile.css";
 
@@ -40,6 +41,8 @@ export const Profile = async () => {
         }
 
         try {
+          Loader(".alert__buttons-container");
+
           const response = await putUser(user._id, formData, token);
 
           if (response.user) {
@@ -78,6 +81,8 @@ export const Profile = async () => {
     const handleDelete = () => {
       const onAccept = async () => {
         try {
+          Loader(".alert__buttons-container");
+
           const response = await deleteUser(user._id, token);
 
           removeLocalStorage();
@@ -114,6 +119,8 @@ export const Profile = async () => {
 
     const handleLogout = () => {
       const onAccept = () => {
+        Loader(".alert__buttons-container");
+
         removeLocalStorage();
 
         RemoveAlert();

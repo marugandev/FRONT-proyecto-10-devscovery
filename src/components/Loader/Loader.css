@@ -1,9 +1,8 @@
 .loader {
-  width: 60px;
-  height: 60px;
+  width: 24px;
+  height: 24px;
+  margin-left: var(--de-margin-s);
   border-radius: 50%;
-  /*  border: 2px solid var(--de-accent-primary);
-  border-top-color: transparent; */
   animation: spin 1.2s linear infinite;
 }
 

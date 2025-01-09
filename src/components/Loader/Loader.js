@@ -1,15 +1,17 @@
 import "./Loader.css";
 
-export const Loader = () => {
-  const main = document.querySelector("main");
-  if (!main) {
-    console.error("No se encontró el elemento main");
+export const Loader = (parentElement) => {
+  const container = document.querySelector(parentElement);
+
+  if (!container) {
+    console.error(
+      `No se encontró el elemento con el selector ${parentElement}`
+    );
     return;
   }
 
   const div = document.createElement("div");
   div.classList.add("loader");
 
-  main.prepend(div);
-  /*   return div; */
+  container.append(div);
 };
