@@ -1,5 +1,6 @@
 import { LoginRegister } from "../../pages/LoginRegister/LoginRegister";
 import { putEventAttendees } from "../../utils/functions/eventAttendeesService";
+import { Alert, RemoveAlert } from "../AlertManagement/AlertManagement";
 import { Button } from "../Button/Button";
 
 import "./RenderEvent.css";
@@ -76,8 +77,17 @@ export const RenderEvent = ({ parentElement, res }) => {
       e.preventDefault();
 
       if (!user) {
-        alert("Inicia sesión o regístrate para poder reservar los eventos");
-        LoginRegister();
+        Alert({
+          textContent:
+            "Inicia sesión o regístrate para poder reservar los eventos.",
+          onAccept: () => {
+            RemoveAlert, LoginRegister();
+          }
+        });
+
+        console.error(
+          "Inicia sesión o regístrate para poder reservar los eventos."
+        );
       }
 
       button.classList.toggle("events__button--clicked");
@@ -124,10 +134,13 @@ export const RenderEvent = ({ parentElement, res }) => {
           localStorage.setItem("user", JSON.stringify(res.user));
         }
       } catch (error) {
+        Alert({
+          textContent:
+            "Hubo un problema al registrar tu asistencia. Por favor, intentalo de nuevo mas tarde.",
+          onAccept: RemoveAlert
+        });
+
         console.error("Fallo al registrar asistencia:", error);
-        alert(
-          "Hubo un problema al registrar tu asistencia. Por favor, intenta de nuevo."
-        );
       } finally {
         button.disabled = false;
       }
