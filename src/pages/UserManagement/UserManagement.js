@@ -58,6 +58,7 @@ export const UserManagement = async () => {
         "Fallo al cargar los usuarios. Por favor, inténtalo más tarde.",
       onAccept: RemoveAlert
     });
+
     console.error("Fallo al obtener usuarios:", error);
   }
 
@@ -90,16 +91,29 @@ export const UserManagement = async () => {
           }
           try {
             const response = await putUser(userId, formData, token);
-            console.log("Usuario actualizado", response);
 
             if (userLocalStorage && userLocalStorage._id === userId) {
               localStorage.setItem("user", JSON.stringify(response.user));
             }
-            window.location.href = "/events";
-          } catch (error) {
-            console.error("Error al actualizar el usuario:", error);
-          } finally {
+
             RemoveAlert();
+            Alert({
+              textContent: "Usuario actualizado",
+              onAccept: () => {
+                RemoveAlert;
+                window.location.href = "/events";
+              }
+            });
+
+            console.log("Usuario actualizado", response);
+          } catch (error) {
+            RemoveAlert();
+            Alert({
+              textContent: error,
+              onAccept: RemoveAlert
+            });
+
+            console.error("Error al actualizar el usuario:", error);
           }
         };
         Alert({
@@ -113,15 +127,29 @@ export const UserManagement = async () => {
       const handleDelete = () => {
         const onAccept = async () => {
           try {
-            await deleteUser(userId, token);
+            const response = await deleteUser(userId, token);
 
             if (userLocalStorage && userLocalStorage._id === userId)
               removeLocalStorage();
-            window.location.href = "/events";
-          } catch (error) {
-            console.error("Error al eliminar el usuario:", error);
-          } finally {
+
             RemoveAlert();
+            Alert({
+              textContent: "Usuario eliminado",
+              onAccept: () => {
+                RemoveAlert;
+                window.location.href = "/events";
+              }
+            });
+
+            console.log("Usuario eliminado", response);
+          } catch (error) {
+            RemoveAlert();
+            Alert({
+              textContent: error,
+              onAccept: RemoveAlert
+            });
+
+            console.error("Error al eliminar el usuario:", error);
           }
         };
         Alert({
@@ -150,6 +178,7 @@ export const UserManagement = async () => {
           "Error al cargar el perfil, por favor inténtalo de nuevo mas tarde",
         onAccept: RemoveAlert
       });
+
       console.error("Error al cargar el perfil:", error);
     }
   });
