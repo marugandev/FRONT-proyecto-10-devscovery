@@ -8,6 +8,7 @@ export const FieldForm = ({
   inputValue,
   inputMaxLength,
   inputMinLength,
+  inputAutocomplete,
   labelTextContent,
   labelClass
 }) => {
@@ -37,6 +38,8 @@ export const FieldForm = ({
 
   if (inputMaxLength) input.setAttribute("maxlength", inputMaxLength);
   if (inputMinLength) input.setAttribute("minlength", inputMinLength);
+
+  if (inputAutocomplete) input.setAttribute("autocomplete", inputAutocomplete);
 
   label.textContent = labelTextContent;
   if (labelClass) {

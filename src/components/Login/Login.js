@@ -10,6 +10,7 @@ export const Login = () => {
       inputClass: "auth-section__input auth-section__input--email",
       inputName: "inputEmail",
       inputMaxLength: 50,
+      inputAutocomplete: "email",
       labelTextContent: "Correo electrónico",
       labelClass: "auth-section__label auth-section__label--email"
     }),
@@ -20,6 +21,7 @@ export const Login = () => {
       inputName: "inputPassword",
       inputMinLength: 8,
       inputMaxLength: 100,
+      inputAutocomplete: "current-password",
       labelTextContent: "Contraseña",
       labelClass: "auth-section__label auth-section__label--password"
     })
