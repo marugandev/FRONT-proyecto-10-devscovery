@@ -66,7 +66,7 @@ export const Info = () => {
 
   const footerImg = document.createElement("img");
   footerImg.src =
-    "https://res.cloudinary.com/cloudcloudinary0/image/upload/v1733404016/proyecto-10-devscovery/assets/logo_marugandev/haco9r7lthjeocir8rnk.svg";
+    "https://res.cloudinary.com/cloudcloudinary0/image/upload/v1737029194/proyecto-10-devscovery/assets/logo_marugandev/evyc294b03erpo9o6l4b.svg";
   footerImg.alt = "Marugandev";
   footerImg.classList.add("info__footer-img");
 
