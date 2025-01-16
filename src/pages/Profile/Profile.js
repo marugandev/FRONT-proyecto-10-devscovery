@@ -6,7 +6,6 @@ import {
   putUser,
   deleteUser
 } from "../../utils/functions/userService";
-import { removeLocalStorage } from "../../utils/functions/removeLocalStorage";
 import {
   Alert,
   RemoveAlert
@@ -85,7 +84,7 @@ export const Profile = async () => {
 
           const response = await deleteUser(user._id, token);
 
-          removeLocalStorage();
+          localStorage.clear();
 
           RemoveAlert();
           Alert({
@@ -121,7 +120,7 @@ export const Profile = async () => {
       const onAccept = () => {
         Loader(".alert__buttons-container");
 
-        removeLocalStorage();
+        localStorage.clear();
 
         RemoveAlert();
         Alert({

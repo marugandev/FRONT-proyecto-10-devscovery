@@ -6,7 +6,7 @@ import { Loader } from "../../components/Loader/Loader";
 import { RenderProfile } from "../../components/RenderProfile/RenderProfile";
 import { moveInputs } from "../../utils/animations/moveInputs";
 import { CreatePage } from "../../utils/functions/createPage";
-import { removeLocalStorage } from "../../utils/functions/removeLocalStorage";
+
 import {
   getUserById,
   getUsers,
@@ -135,7 +135,7 @@ export const UserManagement = async () => {
             const response = await deleteUser(userId, token);
 
             if (userLocalStorage && userLocalStorage._id === userId)
-              removeLocalStorage();
+              localStorage.clear();
 
             RemoveAlert();
             Alert({
