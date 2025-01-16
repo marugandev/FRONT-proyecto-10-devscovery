@@ -1,4 +1,3 @@
-import { removeLocalStorage } from "./removeLocalStorage";
 import { verifyToken } from "./userService";
 
 export const listenToTokenChanges = () => {
@@ -9,7 +8,7 @@ export const listenToTokenChanges = () => {
     if (key === "token" && newValue) {
       verifyJwt(newValue);
     } else {
-      removeLocalStorage();
+      localStorage.clear();
       window.location.href = "/";
     }
   });
@@ -22,7 +21,7 @@ export const verifyJwt = async (token) => {
       console.log("verifyJwt ✅");
     }
   } catch (error) {
-    removeLocalStorage();
+    localStorage.clear();
     window.location.href = "/";
 
     console.error(error);
