@@ -7,10 +7,16 @@ export const doRegister = async (e) => {
   const pError = document.querySelector(".auth-section__error");
   pError.innerHTML = "";
 
-  const inputUserName = e.target[1];
-  const inputEmail = e.target[3];
-  const inputPassword = e.target[5];
-  const inputRepeatPassword = e.target[7];
+  const [
+    ,
+    inputUserName,
+    ,
+    inputEmail,
+    ,
+    inputPassword,
+    ,
+    inputRepeatPassword
+  ] = Array.from(e.target);
 
   if (inputPassword.value !== inputRepeatPassword.value) {
     pError.textContent = "La contraseña debe coincidir";
@@ -32,13 +38,10 @@ export const doRegister = async (e) => {
       console.log("register ✅");
       replaceMenu();
       Events();
-    } else {
-      pError.textContent = res.message || "Error desconocido al registrarse";
-      console.error(res);
     }
   } catch (error) {
     pError.textContent =
-      "Error en la petición al servidor, inténtalo más tarde";
+      error || "Error en la petición al servidor, inténtalo más tarde";
     console.error(error);
   }
 };
