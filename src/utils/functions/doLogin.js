@@ -7,8 +7,7 @@ export const doLogin = async (e) => {
   const pError = document.querySelector(".auth-section__error");
   pError.innerHTML = "";
 
-  const inputEmail = e.target[1];
-  const inputPassword = e.target[3];
+  const [, inputEmail, , inputPassword] = Array.from(e.target);
 
   const body = {
     email: inputEmail.value,
@@ -24,13 +23,10 @@ export const doLogin = async (e) => {
       console.log("login ✅");
       replaceMenu();
       Events();
-    } else {
-      pError.textContent = res.message || "Error desconocido al iniciar sesión";
-      console.error(res);
     }
   } catch (error) {
     pError.textContent =
-      "Error en la petición al servidor, inténtalo más tarde";
+      error || "Error en la petición al servidor, inténtalo más tarde";
     console.error(error);
   }
 };
