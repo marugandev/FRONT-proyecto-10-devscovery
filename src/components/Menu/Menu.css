@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--de-gap-l);
+  transition: max-height 0.2s ease-in-out;
 }
 
 header > .header__menu-toggle {
   display: flex;
-  width: 100%;
+  max-height: 280px;
   gap: var(--de-gap-l);
 }
 
@@ -44,6 +45,7 @@ header > .header__menu-toggle {
 
 @media (max-width: 768px) {
   .header__menu {
-    display: none;
+    max-height: 0px;
+    overflow: hidden;
   }
 }
